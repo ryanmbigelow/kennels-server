@@ -1,6 +1,6 @@
 import sqlite3
 import json
-from models import Employee
+from models.employee import Employee
 from models.location import Location
 
 EMPLOYEES = [
@@ -25,14 +25,14 @@ def get_single_employee(id):
             e.address,
             e.location_id
         FROM employee e
-        WHERE a.id = ?
+        WHERE e.id = ?
         """, ( id, ))
 
         # Load the single result into memory
         data = db_cursor.fetchone()
 
         # Create an employee instance from the current row
-        employee = Employee(data['id'], data['name'])
+        employee = Employee(data['id'], data['name'], data['address'], data['location_id'])
 
         return employee.__dict__
 

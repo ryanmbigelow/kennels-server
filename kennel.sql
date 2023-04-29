@@ -115,3 +115,21 @@ SELECT
 FROM Employee e
 JOIN Location l
     ON l.id = e.location_id
+
+SELECT
+    l.id,
+    l.name,
+    l.address,
+    e.id employee_id,
+    e.name employee_name,
+    e.address employee_address,
+    a.id animal_id,
+    a.name animal_name,
+    a.breed animal_breed,
+    a.status animal_status
+FROM Location l
+JOIN Employee e
+    ON e.location_id = l.id
+JOIN Animal a
+    ON a.location_id = l.id
+WHERE l.id = 1

@@ -1,6 +1,6 @@
 import sqlite3
 import json
-from models import Customer
+from models.customer import Customer
 
 CUSTOMERS = [
     {
@@ -19,17 +19,18 @@ def get_single_customer(id):
         # into the SQL statement.
         db_cursor.execute("""
         SELECT
-            a.id,
-            a.name
-        FROM customer a
-        WHERE a.id = ?
+            c.id,
+            c.name,
+            c.address
+        FROM customer c
+        WHERE c.id = ?
         """, ( id, ))
 
         # Load the single result into memory
         data = db_cursor.fetchone()
 
         # Create a customer instance from the current row
-        customer = Customer(data['id'], data['name'])
+        customer = Customer(data['id'], data['name'], data['address'])
 
         return customer.__dict__
 
