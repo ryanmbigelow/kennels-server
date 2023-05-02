@@ -46,9 +46,12 @@ def get_all_customers():
         # Write the SQL query to get the information you want
         db_cursor.execute("""
         SELECT
-            a.id,
-            a.name
-        FROM customer a
+            c.id,
+            c.name,
+            c.address,
+            c.email,
+            c.password
+        FROM customer c
         """)
 
         # Initialize an empty list to hold all customer representations
@@ -64,7 +67,7 @@ def get_all_customers():
             # Note that the database fields are specified in
             # exact order of the parameters defined in the
             # Customer class above.
-            customer = Customer(row['id'], row['name'])
+            customer = Customer(row['id'], row['name'], row['address'], row['email'], row['password'])
 
             customers.append(customer.__dict__) # see the notes below for an explanation on this line of code.
 

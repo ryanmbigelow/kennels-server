@@ -64,10 +64,10 @@ def get_all_locations():
         # Write the SQL query to get the information you want
         db_cursor.execute("""
         SELECT
-            a.id,
-            a.name,
-            a.address
-        FROM employee a
+            l.id,
+            l.name,
+            l.address
+        FROM location l
         """)
 
         # Initialize an empty list to hold all employee representations
